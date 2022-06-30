@@ -1,2 +1,2 @@
 # The-Doppler
-A weather app project for practicing Api use. 
+A weather app project for practicing API use. 
