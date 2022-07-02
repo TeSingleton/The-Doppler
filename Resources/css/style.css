@@ -1,0 +1,40 @@
+/* body element reqiures styling */
+/* div elements require styling */
+*{
+    background-color: purple;
+}
+/* fluid container element used from bootstrap */
+.container-fluid{
+    background-color: blue;
+    size: 100vh;
+}
+
+div{
+    size: 100px;
+}
+
+.temp{
+background-color: yellow
+};
+
+.hourly{
+background-color: aqua
+};
+
+.SevenDay{
+background-color: purple
+};
+
+
+/* css bootstrap table element used for the table element */
+.table,
+.col,
+.divider,
+.row,
+.table-dark,
+.table-sm{
+    position: relative;
+    background-color: wheat
+
+};
+
