@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="./Resources/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <!-- todo add classes to css -->
+    <section class="section level">
+      <div class="container">
+        <div class="notification is-primary">
+          <textarea
+            class="textarea"
+            placeholder="Where's the Weather?"
+          ></textarea>
+          <button class="button is-primary is-light level-right">Search Weather</button>
+
+          <!-- todo parse api info into these containers -->
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+              <div class="tile">
+                <!-- todo--city container -->
+                <div class="tile is-parent is-vertical">
+                  <article class="tile is-child box">
+                    "city<!-- Put any content you want -->
+                  </article>
+                  <article class="tile is-child box">degrees</article>
+                </div>
+                <div class="tile is-parent">
+                  <article class="tile is-child box">
+                    <ul> "7 day "
+                      <li>day 1</li>
+                      <li>day 2</li>
+                      <li>day 3</li>
+                      <li>day 4</li>
+                      <li>day 5</li>
+                      <li>day 6</li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+              <div class="tile is-parent">
+                <article class="tile is-child box">
+                  <!-- Put any content you want -->
+                </article>
+              </div>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child box">
+                <!-- Put any content you want -->
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./Resources/js/"></script>
+  </body>
+</html>
