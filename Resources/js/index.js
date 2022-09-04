@@ -1,10 +1,57 @@
 // var apiKey =() ;
+var apiKey =`26963609fb701275305bd9ac25dcd829`
+// var weatherApiUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${city name},{state code},{country code}&{limit}=limit&appid={apiKey}`
+var cityName = document.getElementById("city_name")
+cityName = cityName.textContent
 
 // submit the form to fetch weather information
-// handle button click to fetch  weather information
+var submiT =document.getElementById('search-btn');
+
+
+
+
+// handle button click to fetch  weather information/////////////////////////////////////
+function searcH(){
+    getLocation(cityName)
+    };
+
+
 // fetch geolocation data (geocoding api)
-// fetch weather data (onecall)
+// onclick event listener
+
 console.log("are you attached");
+
+//fetch Geolocation Data (geocoding API) 
+function getLocation(cityName){
+
+    var request = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},&appid=${apiKey}`;
+
+    fetch(request)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data)
+            
+        });
+    
+    
+}
+ getLocation();
+
+
+// fetch weather data (onecall)
+
+
+
+
+
+
+console.log("attached")
+
+
+
+
 
 // Given a weather dashboard 
 // with `FORM` inputs
@@ -30,3 +77,6 @@ console.log("are you attached");
 //  i am then presented with the 5day forcast that displays the date , an icon of the weather conditions, the temperature, the wind speed, and the humidty 
 //  when i click on a city in the history 
 // then i am again presented with the conditions, future and past conditions
+
+
+
