@@ -1,5 +1,5 @@
 // var apiKey =() ;
-var apiKey =`26963609fb701275305bd9ac25dcd829`
+var apiKey = config.weather_key;
 // var weatherApiUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${city name},{state code},{country code}&{limit}=limit&appid={apiKey}`
 var cityName = document.getElementById("city_name")
 cityName = cityName.textContent
