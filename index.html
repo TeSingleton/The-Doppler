@@ -1,20 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Doppler Pt_2</title>
+    <link rel="stylesheet" href="./pt_2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
   </head>
+
   <body>
-    <!-- todo add classes to css -->
-  <section class="section">
-    <div class="container">
-      <div class="notification is-primary">
-        <textarea class="textarea" placeholder="Where's the Weather?"></textarea>
-        <button class="button is-primary is-light">Search Weather</button>
+    <header>...its the weather</header>
+
+    <!-- HTML Form input -->
+    <div class="field">
+      <label class="label"></label>
+      <div class="control">
+        <input
+          class="input is-rounded is-normal"
+          id="city"
+          type="text"
+          placeholder="Enter City"
+          style="width: 25%"
+        />
+      </div>
+      <button id="search_btn">Search</button>
+      <!-- style button later -->
+    </div>
+
+    <!-- container to be populated with data from the API -->
+    <div class="container is-fluid">
+      <div class="notification is-dark">
+        <!-- current weather -->
+        <div id="current_weather">It currently is</div>
+        <div id="uv_index">UVI</div>
+        <!-- search history -->
+        <div id="search_history">Search History</div>
+        <!-- 7 Day Forecast -->
+        <div id="7day_forecast">The 7 Day</div>
+        <!-- use CSS to adjust the divs on the page -->
       </div>
     </div>
-  </section>
+    <footer id="footer">This is a Footer</footer>
+    <script src="./Assets/pt_2.js"></script>
   </body>
 </html>
+
+<!-- this html is from my doppler 2 review file as i rewrite the code -->
