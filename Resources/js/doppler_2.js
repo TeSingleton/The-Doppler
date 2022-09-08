@@ -4,8 +4,13 @@ var pastSearches;
 
 // HTML Elements
 var date = new Date();
+//  create time variable and add to the page
 var time = date.toLocaleTimeString();
+document.getElementById("time").innerText = time;
+// create date variable and add to the page
 var localeDate = date.toLocaleDateString();
+document.getElementById("date").innerText = localeDate;
+// varible initialized with html element with the ID of city
 var city = document.getElementById("city");
 city = city.textContent;
 var forecast = document.getElementById("7day_forecast");
@@ -13,6 +18,10 @@ forecast = forecast.innerHTML;
 var searchButton = document.getElementById("search_btn");
 var searchHistoryContainer = document.getElementById("search_history");
 var uvIndex = document.getElementById("uv_index");
+
+function showCurrent() {
+  // append current weather info to the page
+}
 
 function submitForm() {
   // fetch the cityName from the text input
@@ -25,25 +34,64 @@ function showSearchHistory() {
   // get searches from local storage
 }
 
-function showCurrent() {
-  // append current weather info to the page
-}
-
 function show7Day() {
   // append 7 day forecast info to the page
 }
+//* Remeber YOUR `Why`...
+// get the city location
+function getCityLocation(city) {
+  // variable initialized with the geoLocation API
+  var geoDataApi =
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    city +
+    "as&appid=d9fd8247a7260c41e5441662fe670a6b";
 
-function getCityLocation() {}
+  fetch(geoDataApi).then(function (response) {
+    if (response.ok) {
+      return response.json().then(function (data) {
+        console.log(data);
+      });
+    } else {
+      console.log(response.status);
+    }
+  });
+}
+getCityLocation("las veg");
 
-function getCurrentWeather() {
+function getCurrentWeather(data) {
+  var currentWeatherApi =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=36.1672559&lon=-115.148516&units=imperial&exclude=hourly,minutely&appid=d9fd8247a7260c41e5441662fe670a6b";
+
+  fetch(currentWeatherApi).then(function (response) {
+    if (response.ok) {
+      return response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
   // get forecast info
   /* show current Temp w/ icon
    show current Humidity
    show Winds Speeds
    show UV index*/
 }
+getCurrentWeather();
 
+//  get the 7Day forecast
 function get7DayWeather() {
+  var forecastAPI =
+    "https://api.openweathermap.org/data/2.5/forecast/?lat=36.1672559&lon=-115.148516&cnt=7&units=imperial&appid=d9fd8247a7260c41e5441662fe670a6b";
+
+  fetch(forecastAPI).then(function (response) {
+    if (response.ok) {
+      return response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
+
+  get7DayWeather();
+
   // get forecast info
   // appened forecast info to the html
   /* show current Temp w/ icon
@@ -56,9 +104,14 @@ function clearWeatherData() {
   // to be called when a new search is submitted
 }
 
+// add an
 console.log(time);
 console.log(localeDate);
 
+//* Its amazing what we are able to do.
+//* If you're reading this , just recognize that You are Dope!
+
+//*Thank you for Reading My Code
 // GIVEN a weather dashboard
 // ...with form inputs ✅
 
