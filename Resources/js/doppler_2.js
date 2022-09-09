@@ -19,85 +19,49 @@ var searchButton = document.getElementById("search_btn");
 var searchHistoryContainer = document.getElementById("search_history");
 var uvIndex = document.getElementById("uv_index");
 
-function showCurrent() {
-  // append current weather info to the page
-}
+//* Remeber YOUR `Why?`...
 
-function submitForm() {
-  // fetch the cityName from the text input
-  // Call the getLocation and pass the city name
-  // preventDefault to make sure form doesnt reset
-}
-
-function showSearchHistory() {
-  // show previous searches
-  // get searches from local storage
-}
-
-function show7Day() {
-  // append 7 day forecast info to the page
-}
-//* Remeber YOUR `Why`...
+var newCity = "tokyo";
 // get the city location
-function getCityLocation(city) {
+function getCityLocation() {
   // variable initialized with the geoLocation API
-  var geoDataApi =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
-    city +
-    "as&appid=d9fd8247a7260c41e5441662fe670a6b";
+  var lati;
+  var long;
+  var geoDataApi = `https://api.openweathermap.org/geo/1.0/direct?q=${newCity}&limit=5&appid=d9fd8247a7260c41e5441662fe670a6b`;
 
   fetch(geoDataApi).then(function (response) {
     if (response.ok) {
       return response.json().then(function (data) {
         console.log(data);
+        lati = data[0].lat;
+        console.log(lati);
+        long = data[0].lon;
+        console.log(long);
+        newCity = data[0].name;
+        get7DayWeather(lati, long);
       });
-    } else {
-      console.log(response.status);
     }
   });
 }
-getCityLocation("las veg");
+getCityLocation();
 
-function getCurrentWeather(data) {
-  var currentWeatherApi =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=36.1672559&lon=-115.148516&units=imperial&exclude=hourly,minutely&appid=d9fd8247a7260c41e5441662fe670a6b";
+function get7DayWeather(lati, long) {
+  var getWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lati}&lon=${long}&units=imperial&appid=d9fd8247a7260c41e5441662fe670a6b`;
 
-  fetch(currentWeatherApi).then(function (response) {
-    if (response.ok) {
-      return response.json().then(function (data) {
-        console.log(data);
-      });
-    }
-  });
-  // get forecast info
-  /* show current Temp w/ icon
-   show current Humidity
-   show Winds Speeds
-   show UV index*/
-}
-getCurrentWeather();
-
-//  get the 7Day forecast
-function get7DayWeather() {
-  var forecastAPI =
-    "https://api.openweathermap.org/data/2.5/forecast/?lat=36.1672559&lon=-115.148516&cnt=7&units=imperial&appid=d9fd8247a7260c41e5441662fe670a6b";
-
-  fetch(forecastAPI).then(function (response) {
-    if (response.ok) {
-      return response.json().then(function (data) {
-        console.log(data);
-      });
-    }
-  });
-
-  get7DayWeather();
-
-  // get forecast info
-  // appened forecast info to the html
-  /* show current Temp w/ icon
-   show current Humidity
-   show Winds Speeds
-   show UV index*/
+  fetch(getWeather)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      temp = data.current.temp;
+      wind = data.current.wind_speed;
+      humidity = data.current.humidity;
+      uvI = data.current.uvi;
+      forecast = data.daily;
+      icon = data.current.weather[0].icon;
+      console.log(temp, wind, humidity, uvI, icon);
+      showWeather(temp, wind, humidity, uvI, forecast, icon);
+    });
 }
 
 function clearWeatherData() {
@@ -112,6 +76,30 @@ console.log(localeDate);
 //* If you're reading this , just recognize that You are Dope!
 
 //*Thank you for Reading My Code
+
+// function showCurrent() {
+//   // append current weather info to the page
+// }
+
+// function submitSearch() {
+//   console.log("clicked")
+//  showCurrent();
+//  show7Day();
+
+//   // fetch the cityName from the text input
+//   // Call the getLocation and pass the city name
+//   // preventDefault to make sure form doesnt reset
+// }
+// submitSearch()
+// function showSearchHistory() {
+//   // show previous searches
+//   // get searches from local storage
+// }
+
+// function show7Day() {
+//   // append 7 day forecast info to the page
+// }
+
 // GIVEN a weather dashboard
 // ...with form inputs ✅
 
