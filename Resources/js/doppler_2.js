@@ -11,8 +11,9 @@ var forecast = document.getElementById("7day_forecast");
 var searchButton = document.getElementById("search_btn");
 var searchHistoryContainer = document.getElementById("search_history");
 var uvIndex = document.getElementById("uv_index");
-var currentTemp = document.getElementById("current_temp")
-var currentHumidity = document.getElementById("humidity")
+var currentTemp = document.getElementById("current_temp");
+var currentHumidity = document.getElementById("humidity");
+var windSpeed = document.getElementById("wind_speed");
 // todo add weather icons
 
 //* Remeber YOUR `Why?`...
@@ -24,8 +25,7 @@ document.getElementById("time").innerText = time;
 var localeDate = date.toLocaleDateString();
 document.getElementById("date").innerText = localeDate;
 
-
-var newCity = "tokyo";
+var newCity = "las vegas";
 // get the city location
 function getCityLocation() {
   // variable initialized with the geoLocation API
@@ -70,10 +70,12 @@ function get7DayWeather(lati, long) {
 
 function showWeather(temp, wind, humidity, uvI, forecast, icon) {
   cityName.textContent = newCity;
-  uvIndex.textContent = uvI;
+  currentTemp.textContent = "It is " + Math.round(temp) + "º"; //round out the temp
+  uvIndex.textContent = "UV Index: " + uvI + "  of 10";
+  currentHumidity.textContent = humidity + "%";
+  windSpeed.textContent = Math.round(wind) + " MPH";
 }
 showWeather();
-
 
 function clearWeatherData() {
   // to be called when a new search is submitted
