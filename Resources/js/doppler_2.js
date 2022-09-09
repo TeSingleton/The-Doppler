@@ -4,22 +4,26 @@ var pastSearches;
 
 // HTML Elements
 var date = new Date();
+
+// varible initialized with html element with the ID of city
+var cityName = document.getElementById("city_name");
+var forecast = document.getElementById("7day_forecast");
+var searchButton = document.getElementById("search_btn");
+var searchHistoryContainer = document.getElementById("search_history");
+var uvIndex = document.getElementById("uv_index");
+var currentTemp = document.getElementById("current_temp")
+var currentHumidity = document.getElementById("humidity")
+// todo add weather icons
+
+//* Remeber YOUR `Why?`...
+
 //  create time variable and add to the page
 var time = date.toLocaleTimeString();
 document.getElementById("time").innerText = time;
 // create date variable and add to the page
 var localeDate = date.toLocaleDateString();
 document.getElementById("date").innerText = localeDate;
-// varible initialized with html element with the ID of city
-var city = document.getElementById("city");
-city = city.textContent;
-var forecast = document.getElementById("7day_forecast");
-forecast = forecast.innerHTML;
-var searchButton = document.getElementById("search_btn");
-var searchHistoryContainer = document.getElementById("search_history");
-var uvIndex = document.getElementById("uv_index");
 
-//* Remeber YOUR `Why?`...
 
 var newCity = "tokyo";
 // get the city location
@@ -63,6 +67,13 @@ function get7DayWeather(lati, long) {
       showWeather(temp, wind, humidity, uvI, forecast, icon);
     });
 }
+
+function showWeather(temp, wind, humidity, uvI, forecast, icon) {
+  cityName.textContent = newCity;
+  uvIndex.textContent = uvI;
+}
+showWeather();
+
 
 function clearWeatherData() {
   // to be called when a new search is submitted
