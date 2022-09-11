@@ -4,7 +4,7 @@ var pastSearches;
 
 // HTML Elements
 var date = new Date();
-
+console.log(date);
 // varible initialized with html element with the ID of city
 var cityName = document.getElementById("city_name");
 var sevenDayForecast = document.getElementById("7day_forecast");
@@ -106,6 +106,25 @@ function get7DayWeather(lati, long, currentCity) {
           `${iconUrl}${forecast[i].weather[0].icon}.png`
         );
         weeklyWeather.appendChild(weeklyIcon);
+
+        var weeklyHumidity = document.createElement("p");
+        weeklyHumidity.textContent =
+          "Humidity: " + Math.round(forecast[i].humidity);
+        weeklyWeather.appendChild(weeklyHumidity);
+
+        var weeklyWindSpeed = document.createElement("p");
+        weeklyWindSpeed.textContent =
+          "Wind Speed: " + Math.round(forecast[i].wind_speed);
+        weeklyWeather.appendChild(weeklyWindSpeed);
+        // todo add day of week to weekly
+        var weeklyDow = document.createElement("p");
+        var unixTime = forecast[i].dt * 1000;
+        var unixToLocal = new Date(unixTime);
+        // var dayOfWeek =unixToLocal.getDay
+        // weeklyDow.textContent=
+        console.log(unixTime);
+        //   weeklyDow.textContent=date.getDay( forecast[i].dt)
+        //   console.log(weeklyDow);
       }
       //creating elements for the weather icon
 
@@ -125,10 +144,10 @@ function showWeather(
   cityName.textContent = currentCity;
   // todo add weather icon
   // ;
-  currentTemp.textContent = "It is " + Math.round(temp) + "º"; //round out the temp
+  currentTemp.textContent = "It is currently " + Math.round(temp) + "º"; //round out the temp
   uvIndex.textContent = "UV Index: " + Math.round(uvI) + "  of 10";
-  currentHumidity.textContent = humidity + "%";
-  windSpeed.textContent = Math.round(wind) + " MPH";
+  currentHumidity.textContent = "Humidity: " + humidity + "%";
+  windSpeed.textContent = "Wind Speed: " + Math.round(wind) + " MPH";
   // styles for UVI
   if (uvI <= 3) {
     uvIndex.setAttribute(
