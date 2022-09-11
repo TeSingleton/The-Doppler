@@ -8,13 +8,26 @@ var date = new Date();
 // varible initialized with html element with the ID of city
 var cityName = document.getElementById("city_name");
 var forecast = document.getElementById("7day_forecast");
+console.log(forecast);
+var weatherCard = document.getElementById("weathercard");
 var searchButton = document.getElementById("search_btn");
 var searchHistoryContainer = document.getElementById("search_history");
+var searchInput = document.getElementById("city");
 var uvIndex = document.getElementById("uv_index");
 var currentTemp = document.getElementById("current_temp");
 var currentHumidity = document.getElementById("humidity");
 var windSpeed = document.getElementById("wind_speed");
 // todo add weather icons
+
+// 7day Forecasts (days)
+var day1 = document.getElementById("day1");
+
+var day2 = document.getElementById("day2");
+var day3 = document.getElementById("day3");
+var day4 = document.getElementById("day4");
+var day5 = document.getElementById("day5");
+var day6 = document.getElementById("day6");
+var day7 = document.getElementById("day7");
 
 //* Remeber YOUR `Why?`...
 
@@ -25,55 +38,106 @@ document.getElementById("time").innerText = time;
 var localeDate = date.toLocaleDateString();
 document.getElementById("date").innerText = localeDate;
 
-var newCity = "las vegas";
 // get the city location
-function getCityLocation() {
+function getCityLocation(newCity) {
+  //make sure function is able to accept a variable.
   // variable initialized with the geoLocation API
   var lati;
   var long;
-  var geoDataApi = `https://api.openweathermap.org/geo/1.0/direct?q=${newCity}&limit=5&appid=d9fd8247a7260c41e5441662fe670a6b`;
+  var geoDataApi = `https://api.openweathermap.org/geo/1.0/direct?q=${newCity}&limit=7&appid=d9fd8247a7260c41e5441662fe670a6b`;
 
   fetch(geoDataApi).then(function (response) {
+    //unformatted
     if (response.ok) {
       return response.json().then(function (data) {
+        //json formated becomes the obj called data
         console.log(data);
         lati = data[0].lat;
         console.log(lati);
         long = data[0].lon;
         console.log(long);
-        newCity = data[0].name;
-        get7DayWeather(lati, long);
+        currentCity = data[0].name;
+
+        get7DayWeather(lati, long, currentCity);
       });
     }
   });
 }
-getCityLocation();
+getCityLocation("seattle");
 
-function get7DayWeather(lati, long) {
-  var getWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lati}&lon=${long}&units=imperial&appid=d9fd8247a7260c41e5441662fe670a6b`;
+function get7DayWeather(lati, long, currentCity) {
+  var getWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lati}&lon=${long}&cnt=7&units=imperial&appid=d9fd8247a7260c41e5441662fe670a6b`;
 
   fetch(getWeather)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
+      // variables declared without `var` within blocked scope of this function
+
+      // variables for the 'Todays Weather'
       temp = data.current.temp;
       wind = data.current.wind_speed;
       humidity = data.current.humidity;
       uvI = data.current.uvi;
       forecast = data.daily;
-      icon = data.current.weather[0].icon;
-      console.log(temp, wind, humidity, uvI, icon);
-      showWeather(temp, wind, humidity, uvI, forecast, icon);
+      dailyIcon = data.current.weather[0].icon;
+      console.log(temp, wind, humidity, uvI, dailyIcon);
+      // call the showWeather function
+      showWeather(temp, wind, humidity, uvI, forecast, dailyIcon, currentCity);
+      // run a for loop for forecast(data.daily) obj
+
+      for (i = 0; i < forecast.length; i++) {
+        console.log(forecast[2]);
+
+        // variables for the 7day Forecast
+        day1.textContent = Math.round(forecast[0].feels_like.day);
+        day2.textContent = Math.round(forecast[1].feels_like.day);
+        day3.textContent = Math.round(forecast[2].feels_like.day);
+        day4.textContent = Math.round(forecast[3].feels_like.day);
+        day5.textContent = Math.round(forecast[4].feels_like.day);
+        day6.textContent = Math.round(forecast[5].feels_like.day);
+        day7.textContent = Math.round(forecast[6].feels_like.day);
+
+        console.log(day1);
+      }
     });
 }
 
-function showWeather(temp, wind, humidity, uvI, forecast, icon) {
-  cityName.textContent = newCity;
+function showWeather(temp, wind, humidity, uvI, forecast, icon, currentCity) {
+  cityName.textContent = currentCity;
+  // todo add weather icon
   currentTemp.textContent = "It is " + Math.round(temp) + "º"; //round out the temp
-  uvIndex.textContent = "UV Index: " + uvI + "  of 10";
+  uvIndex.textContent = "UV Index: " + Math.round(uvI) + "  of 10";
   currentHumidity.textContent = humidity + "%";
   windSpeed.textContent = Math.round(wind) + " MPH";
+  // styles for UVI
+  if (uvI <= 3) {
+    uvIndex.setAttribute(
+      "style",
+      "color: white; background-color:#92BFB1;padding: 5px; border-radius:5px;"
+    );
+  } else if (uvI <= 6) {
+    uvIndex.setAttribute(
+      "style",
+      "background-color:#F5E960; padding: 3px 5px; border-radius:5px;"
+    );
+  } else if (uvI <= 8) {
+    uvIndex.setAttribute(
+      "style",
+      "color: white; background-color:#cd6531; padding: 5px; border-radius:5px;"
+    );
+  } else {
+    uvIndex.setAttribute(
+      "style",
+      "color: white; background-color:#D72638; padding: 5px; border-radius:5px;"
+    );
+  }
+  // for(i=0;i<7;i++){
+  //   var sevenDayForecast = document.getElementById("7day_forecast")
+  //   sevenDayForecast.innerHTML=
+  // }
 }
 showWeather();
 
@@ -94,14 +158,21 @@ console.log(localeDate);
 //   // append current weather info to the page
 // }
 
-// function submitSearch() {
-//   console.log("clicked")
-//  showCurrent();
-//  show7Day();
+function submitSearch() {
+  console.log("clicked"); //get value from the search input , save the value as a variable.
 
+  // preventDefault to make sure form doesnt reset
+
+  // call first fetch , and pass it the "searched variable"
+
+  // once fetch request is made , reser search input value to an empty string.
+
+  showCurrent();
+  show7Day();
+}
 //   // fetch the cityName from the text input
 //   // Call the getLocation and pass the city name
-//   // preventDefault to make sure form doesnt reset
+
 // }
 // submitSearch()
 // function showSearchHistory() {
