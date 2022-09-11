@@ -7,8 +7,8 @@ var date = new Date();
 
 // varible initialized with html element with the ID of city
 var cityName = document.getElementById("city_name");
-var forecast = document.getElementById("7day_forecast");
-console.log(forecast);
+var sevenDayForecast = document.getElementById("7day_forecast");
+
 var weatherCard = document.getElementById("weathercard");
 var searchButton = document.getElementById("search_btn");
 var searchHistoryContainer = document.getElementById("search_history");
@@ -17,6 +17,8 @@ var uvIndex = document.getElementById("uv_index");
 var currentTemp = document.getElementById("current_temp");
 var currentHumidity = document.getElementById("humidity");
 var windSpeed = document.getElementById("wind_speed");
+
+var iconUrl = `https://openweathermap.org/img/wn/`;
 // todo add weather icons
 
 // 7day Forecasts (days)
@@ -82,32 +84,47 @@ function get7DayWeather(lati, long, currentCity) {
       humidity = data.current.humidity;
       uvI = data.current.uvi;
       forecast = data.daily;
+
       dailyIcon = data.current.weather[0].icon;
+
       console.log(temp, wind, humidity, uvI, dailyIcon);
       // call the showWeather function
-      showWeather(temp, wind, humidity, uvI, forecast, dailyIcon, currentCity);
+
       // run a for loop for forecast(data.daily) obj
 
       for (i = 0; i < forecast.length; i++) {
-        console.log(forecast[2]);
-
         // variables for the 7day Forecast
-        day1.textContent = Math.round(forecast[0].feels_like.day);
-        day2.textContent = Math.round(forecast[1].feels_like.day);
-        day3.textContent = Math.round(forecast[2].feels_like.day);
-        day4.textContent = Math.round(forecast[3].feels_like.day);
-        day5.textContent = Math.round(forecast[4].feels_like.day);
-        day6.textContent = Math.round(forecast[5].feels_like.day);
-        day7.textContent = Math.round(forecast[6].feels_like.day);
 
-        console.log(day1);
+        var weeklyWeather = document.createElement("li");
+        weeklyWeather.innerHTML = Math.round(forecast[i].feels_like.day);
+        console.log(weeklyWeather);
+        sevenDayForecast.appendChild(weeklyWeather);
+
+        var weeklyIcon = document.createElement("img");
+        weeklyIcon.setAttribute(
+          "src",
+          `${iconUrl}${forecast[i].weather[0].icon}.png`
+        );
+        weeklyWeather.appendChild(weeklyIcon);
       }
+      //creating elements for the weather icon
+
+      showWeather(temp, wind, humidity, uvI, forecast, dailyIcon, currentCity);
     });
 }
 
-function showWeather(temp, wind, humidity, uvI, forecast, icon, currentCity) {
+function showWeather(
+  temp,
+  wind,
+  humidity,
+  uvI,
+  forecast,
+  dailyIcon,
+  currentCity
+) {
   cityName.textContent = currentCity;
   // todo add weather icon
+  // ;
   currentTemp.textContent = "It is " + Math.round(temp) + "º"; //round out the temp
   uvIndex.textContent = "UV Index: " + Math.round(uvI) + "  of 10";
   currentHumidity.textContent = humidity + "%";
@@ -134,11 +151,13 @@ function showWeather(temp, wind, humidity, uvI, forecast, icon, currentCity) {
       "color: white; background-color:#D72638; padding: 5px; border-radius:5px;"
     );
   }
-  // for(i=0;i<7;i++){
-  //   var sevenDayForecast = document.getElementById("7day_forecast")
-  //   sevenDayForecast.innerHTML=
-  // }
+  var weatherIcon = document.getElementById("wIcon");
+  weatherIcon = weatherIcon.setAttribute(
+    "src",
+    `${iconUrl}${dailyIcon}@2x.png`
+  );
 }
+
 showWeather();
 
 function clearWeatherData() {
