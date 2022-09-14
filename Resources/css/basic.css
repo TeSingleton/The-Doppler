@@ -1,13 +1,18 @@
 * {
-  background-color: #ebe6ed;
-  color: #0e1314;
-  border: #0e1314;
-  border-style: groove;
 }
 
 body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
   margin: 1em;
   justify-content: center;
+  height: 50%;
+  color: whitesmoke;
 }
 
 ul,
@@ -22,7 +27,7 @@ main {
 
 .weather_container {
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
 }
 
@@ -34,4 +39,13 @@ main {
   flex: 1;
   border: #2de1fc;
   border-style: groove;
+}
+
+#current_temp {
+  font-size: x-large;
+}
+
+.current_weather_container {
+  /* display: flex; */
+  /* justify-content: center; */
 }

@@ -14,25 +14,25 @@
       <div id="date">date</div>
 
       <!-- input area -->
-      <h1 id="forecast">5 day forecast</h1>
-      <p id="inputArea">city<input type="text" id="cityInput" /></p>
+      <h1 id="forecast">The Doppler</h1>
+      <p id="inputArea">city<input type="text" id="cityInput" onkeyup="this.value=this.value.toUpperCase();"/></p>
       <button id="click">Search City</button>
       <button id="clear">Clear Search</button>
-      <h2 id="cityName">Place Holder</h2>
+      <h2 id="cityName"></h2>
 
       <!-- <div class="previous_search_container">previous searches</div> -->
 
       <!-- current weather div  -->
 
       <div class="current_weather_container">
-        <div id="current_temp">Current Temp</div>
-        <ul id="current_stats">
-          Daily Stats
-          <li id="icon"></li>
-          <li id="humidity">humidity</li>
-          <li id="windspeed">wind speed</li>
-          <li id="uvi">uvi</li>
-        </ul>
+        <div id="current_temp"></div>
+        <p id="current_stats">
+          
+          <p id="icon"></p>
+          <p id="humidity"></p>
+          <p id="windspeed"></p>
+          <p id="uvi"></p>
+        </p>
       </div>
     
     <ul id="other_weather_data">
@@ -40,10 +40,10 @@
       </ul>
     </center>
     <!-- 5 day forecast div  -->
-  
+    <center>
       <div class="weather_container">
        
-      <center>
+      
         <main>
         <div id="day1">Tomorrow</div>
 

@@ -13,8 +13,8 @@ document.getElementById("date").innerText = currentDate;
 
 // variables for the dom
 
-cityInput = cityInput.value;
-console.log(cityInput);
+// cityInput = cityInput.value;
+// console.log(cityInput);
 
 // getlocation
 // get the city +(lat and long)
@@ -106,17 +106,15 @@ function showWeather(
 ) {
   // get elements for current weather, add data
   document.getElementById("current_temp").innerText =
-    "Current :" + Math.round(currentTemp) + "º";
+    "Current : \n" + Math.round(currentTemp) + "º";
 
   // document.getElementById("icon").innerHTML = currentIcon;
 
-  document.getElementById("humidity").innerHTML = `Humidity: ${Math.round(
-    curHumidity
-  )} %`;
+  document.getElementById("humidity").innerHTML = `Humidity:</br>
+   ${Math.round(curHumidity)} %`;
 
-  document.getElementById("windspeed").innerText = `WS: ${Math.round(
-    curWindSpeed
-  )} mph`;
+  document.getElementById("windspeed").innerText = `Wind Speed:
+  ${Math.round(curWindSpeed)} mph`;
 
   // setting and appending icon for current weather
   var curIconUrl = ` http://openweathermap.org/img/wn/${currentIcon}.png`;
@@ -156,8 +154,6 @@ function showWeather(
 // showWeather();
 
 function showForecast(forecast) {
-  // var weatherContainer = document.getElementById("weather_container");
-
   // day 1
   // day 1 elements
   var day1 = document.getElementById("day1");
@@ -385,3 +381,13 @@ clearBtn.addEventListener("click", reload, true);
 
 // store searches
 // localStorage.setItem
+
+function hide5Day(clickedBtn) {
+  var weatherContainer = document.getElementById("weather_container");
+  if (clickedBtn) {
+    weatherContainer.style.visibility === "visible";
+  } else {
+    weatherContainer.style.visibility === "hidden";
+  }
+}
+hide5Day();
