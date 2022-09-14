@@ -4,63 +4,53 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Doppler Pt_2</title>
-    <!-- <link rel="stylesheet" href="./pt_2.css" /> -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="./Resources/css/basic.css" />
+    <title>The Doppler</title>
   </head>
-
   <body>
-    <header>
-      ...its the weather
+    <center>
+      <!-- date and time containers -->
       <div id="time">time</div>
       <div id="date">date</div>
-    </header>
 
-    <!-- HTML Form input -->
-    <div class="field">
-      <label class="label"></label>
-      <div class="control">
-        <input
-          class="input is-rounded is-normal"
-          id="city"
-          type="text"
-          placeholder="Enter City"
-          style="width: 25%"
-        />
-      </div>
-      <button id="search_btn" onclick="submitSearch()">Search</button>
-      <!-- search history -->
-      <div id="search_history">Search History</div>
-      <!-- style button later -->
-    </div>
+      <!-- input area -->
+      <h1 id="forecast">5 day forecast</h1>
+      <p id="inputArea">city<input type="text" id="cityInput" /></p>
+      <button id="click">Search City</button>
+      <button id="clear">Clear Search</button>
+      <h2 id="cityName">Place Holder</h2>
 
-    <!-- container to be populated with data from the API -->
-    <div class="container is-fluid">
-      <div class="notification is-dark">
-        <!-- current weather -->
-        <img id="wIcon"></img>
-        <div id="city_name">city name</div>
-        <div id="current_temp">It currently is</div>
-        <div id="uv_index">UVI</div>
-        <div id="humidity">current humidity</div>
-        <div id="wind_speed">wind speed</div>
-        <!-- todo add weather icons -->
+      <div class="previous_search_container">previous searches</div>
 
-        <!-- 7 Day Forecast -->
-        <ul id="7day_forecast">
-          The 7 Day
-        
+      <!-- current weather div  -->
+      <div class="current_weather_container">
+        <div id="current_temp">Current Temp</div>
+        <ul id="current_stats">
+          Daily Stats
+          <li id="icon"></li>
+          <li id="humidity">humidity</li>
+          <li id="windspeed">wind speed</li>
+          <li id="uvi">uvi</li>
         </ul>
-        <!-- todo use CSS to adjust the divs on the page -->
       </div>
-    </div>
-    <footer id="footer">This is a Footer</footer>
-    <!-- jquery and js -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="./Resources/js/doppler_2.js"></script>
+      <ul id="other_weather_data">
+        5 Day Forecast
+      </ul>
+
+      <!-- 5 day forecast div  -->
+      <div class="weather_container">
+        5 Day
+        <div id="day1">Tomorrow</div>
+        <div class="border">--------------------</div>
+        <div id="day2">The Day After Tomorrow</div>
+        <div class="border">--------------------</div>
+        <div id="day3">The Next Day After Tomorrow</div>
+        <div class="border">--------------------</div>
+        <div id="day4">The Next Day</div>
+        <div class="border">--------------------</div>
+        <div id="day5">The Next, Next Day</div>
+      </div>
+    </center>
+    <script src="./Resources/js/index.js"></script>
   </body>
 </html>
