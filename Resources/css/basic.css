@@ -1,4 +1,37 @@
 * {
-  background-color: #643173;
-  color: #2de1fc;
+  background-color: #ebe6ed;
+  color: #0e1314;
+  border: #0e1314;
+  border-style: groove;
+}
+
+body {
+  margin: 1em;
+  justify-content: center;
+}
+
+ul,
+li {
+  list-style: none;
+  border: black;
+  border-style: double;
+}
+main {
+  float: right;
+}
+
+.weather_container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+#day1,
+#day2,
+#day3,
+#day4,
+#day5 {
+  flex: 1;
+  border: #2de1fc;
+  border-style: groove;
 }
