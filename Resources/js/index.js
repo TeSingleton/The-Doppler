@@ -354,15 +354,26 @@ function saveSearch(cityInput) {
   console.log(locationArray);
 
   localStorage.setItem("citySearched", JSON.stringify(locationArray));
+  // searchedCities("citySearched");
 }
 saveSearch();
 
 function searchedCities() {
+  var searchedButtons = document.getElementsByClassName(
+    "previous_search_container"
+  );
   var previousCities = JSON.parse(localStorage.getItem("citySearched"));
+  document.createElement("button").innerHTML =searchedBtn
+  
+  
 
-  for (i = 0; i < previousCities.length; i++) {
-    console.log(previousCities[i]);
-  }
+    
+    previousCities.forEach(addBtn);
+    
+    function addBtn(value){
+searchedBtn + value;
+    }
+  
 }
 searchedCities();
 
@@ -382,12 +393,12 @@ clearBtn.addEventListener("click", reload, true);
 // store searches
 // localStorage.setItem
 
-function hide5Day(clickedBtn) {
-  var weatherContainer = document.getElementById("weather_container");
-  if (clickedBtn) {
-    weatherContainer.style.visibility === "visible";
-  } else {
-    weatherContainer.style.visibility === "hidden";
-  }
-}
-hide5Day();
+// function hide5Day(clickedBtn) {
+//   var weatherContainer = document.getElementById("weather_container");
+//   if (clickedBtn) {
+//     weatherContainer.style.visibility === "visible";
+//   } else {
+//     weatherContainer.style.visibility === "hidden";
+//   }
+// }
+// hide5Day();
