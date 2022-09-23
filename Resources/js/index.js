@@ -358,24 +358,23 @@ function saveSearch(cityInput) {
 }
 saveSearch();
 
-function searchedCities() {
-  var searchedButtons = document.getElementsByClassName(
-    "previous_search_container"
-  );
-  var previousCities = JSON.parse(localStorage.getItem("citySearched"));
-  document.createElement("button").innerHTML =searchedBtn
-  
-  
+// function searchedCities() {
+//   var searchedButtons = document.querySelector(".previous_search_container");
+//   var previousCities = JSON.parse(localStorage.getItem("citySearched"));
+//   var searchedBtn = document.createElement("button").innerHTML ;
 
-    
-    previousCities.forEach(addBtn);
-    
-    function addBtn(value){
-searchedBtn + value;
-    }
   
-}
-searchedCities();
+  
+ 
+//   function addBtn(value) {
+//     previousCities.forEach(city=> console.log());
+//     console.log(previousCities)
+//     searchedBtn + value;
+//     searchedButtons.appendChild(searchedBtn)
+//   }
+//   addBtn()
+// }
+// searchedCities();
 
 // search button event listner
 var clickedBtn = document.getElementById("click");
