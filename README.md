@@ -17,6 +17,7 @@ and a 5 day forecast.
 ### Link to Repo: https://github.com/TeSingleton/The-Doppler
 
 ![App Screenshot] (./Resources/images/Screen Shot 2022-09-14 at 6.08.36 PM.png)
+<img width="937" alt="Screen Shot 2022-10-22 at 6 26 12 PM" src="https://user-images.githubusercontent.com/104960721/197368772-16bb51e5-e164-4ce5-9cde-66e4b2477c2f.png">
 
 ### Link to live: https://tesingleton.github.io/The-Doppler/
 
